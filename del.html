@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h2>Delete Record</h2>
+
+  <label for="srno">SR No:</label><br>
+  <input style="font-size:xx-large" type="text" id="srno" name="srno"  size="6" autocomplete="off"><br><br>
+    <input type="submit" onclick="delrec()" value="Submit">
+<script>
+
+function delrec(){
+url='https://script.google.com/macros/s/AKfycby_xRXHJioTzOHzm-FZQpAxUmQoquzrXOUTKYIezBP8d6Bh2oyz/exec'
+formData = new FormData()
+formData.append('srno', srno.value);
+formData.append('memb', "delete")
+fetch(url, {body: formData,method: "post"});
+srno.value=""
+}
+
+
+</script>
+
+</body>
+</html>
+
