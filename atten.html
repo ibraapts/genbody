@@ -257,14 +257,15 @@ Entry time ${attenmemb[0].dt.substr(16, 5)}
             document.getElementById("srno1").value = "";
             //atteata.push({srno:srno.value, name:membname.value})
             msg.innerHTML = "Attendance Sofar " + (attenData.length - 1)
-            membcount = active.filter(a => a.memb === "Member").length
+     deleted = attenData.filter(a=>a.memb ==="deleted")
+active = attenData.filter(a => !deleted.map(b=>b.srno).includes(a.srno)).filter(a => a.srno >0)
+
+membcount = active.filter(a => a.memb === "Member").length
             nonmembcount = active.filter(a => a.memb === "Non Member").length
             msg.innerHTML = `Members ${membcount} <br>  Non Members ${nonmembcount} `
             //setTimeout(blk(), 3000)
             //rep()
             document.getElementById('btnmemb').style.display = 'block'
-     deleted = attenData.filter(a=>a.memb ==="deleted")
-active = attenData.filter(a => !deleted.map(b=>b.srno).includes(a.srno)).filter(a => a.srno >0)
 
 
 }
