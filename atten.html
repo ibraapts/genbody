@@ -107,7 +107,7 @@
         </div>
         <button style="width:50%; margin-left:25%; display:none " onclick="checkMemb()" class="btn btn-primary"
             id='btnmemb'>Check Membership</button>
-        <p id='msg'></p>
+        <p id='msg'>Wait for attendance count</p>
         <div>
             <table align=center>
                 <tr>
@@ -310,7 +310,7 @@
             submitteddiv.style.display = "block"
             document.getElementById("srno1").value = "";
             //atteata.push({srno:srno.value, name:membname.value})
-            msg.innerHTML = "Attendance Sofar " + (attenData.length - 1)
+            msg.innerHTML = "Attendance Sofar " + (active.length )
 
             //setTimeout(blk(), 3000)
             //rep()
