@@ -141,17 +141,17 @@
             response = await fetch(attendurl)
             attendanceData = await response.json()
             attenData = attendanceData["user"]
-            getMyAttendanceData()
-            membcount = attenData.filter(a => a.memb === "Member").length
-            nonmembcount = attenData.filter(a => a.memb === "Non Member").length
-            msg.innerHTML = `Members ${membcount} <br>  Non Members ${nonmembcount} `
-            //setTimeout(blk(), 3000)
-            //rep()
+//            getMyAttendanceData()
             document.getElementById('btnmemb').style.display = 'block'
-        }
+
+}
         function rep() {
             trtd = "<table class='mytable' id='mytable' border=1 align=center><thead ><th  >SR<th  >Name<th >Mobile<th>Member</thead>"
-            attenData.filter(a => a.srno > 0).sort(function (a, b) {
+           deleted = attenData.filter(a=>a.memb ==="deleted")
+active = attenData.filter(a => !deleted.map(b=>b.srno).includes(a.srno)).filter(a => a.srno >0)
+ 
+            
+            active.filter(a => a.srno > 0).sort(function (a, b) {
                 return a.srno - b.srno;
             }).forEach(function (item) {
                 trtd += `<tr><td> ${item.srno}<td> ${item.name} <td> ${item.mobile} <td> ${item.memb === 'Member' ? "Memb" : "Non"}`;
@@ -257,7 +257,17 @@ Entry time ${attenmemb[0].dt.substr(16, 5)}
             document.getElementById("srno1").value = "";
             //atteata.push({srno:srno.value, name:membname.value})
             msg.innerHTML = "Attendance Sofar " + (attenData.length - 1)
-        }
+            membcount = active.filter(a => a.memb === "Member").length
+            nonmembcount = active.filter(a => a.memb === "Non Member").length
+            msg.innerHTML = `Members ${membcount} <br>  Non Members ${nonmembcount} `
+            //setTimeout(blk(), 3000)
+            //rep()
+            document.getElementById('btnmemb').style.display = 'block'
+     deleted = attenData.filter(a=>a.memb ==="deleted")
+active = attenData.filter(a => !deleted.map(b=>b.srno).includes(a.srno)).filter(a => a.srno >0)
+
+
+}
         function shtData() {
             duplicatesubmitteddiv.style.display = "none"
             generaldiv.style.display = "block"
