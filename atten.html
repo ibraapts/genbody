@@ -1,3 +1,4 @@
+
 <html lang="en">
 
 <head>
@@ -107,7 +108,9 @@
         </div>
         <button style="width:50%; margin-left:25%; display:none " onclick="checkMemb()" class="btn btn-primary"
             id='btnmemb'>Check Membership</button>
-        <p id='msg'>Wait for attendance count</p>
+                  <p id='msg'>Wait for attendance count</p>
+        <button style="width:50%; margin-left:25%; display:block; background:red " onclick="delrec()" class="btn btn-primary"
+            id='btnmemb'>Delete Attendance</button>
         <div>
             <table align=center>
                 <tr>
@@ -116,6 +119,8 @@
                             Show Report</label>
             </table>
         </div>
+        
+        
     </div>
     <div id='reportsdiv' style="display:none; align-items: center;" class="form-floating mb-1 mt-1">
         <br>
@@ -353,7 +358,18 @@
                 document.getElementById("sbutton").disabled = true
             }
         }
-    </script>
+function delrec(){
+url='https://script.google.com/macros/s/AKfycby_xRXHJioTzOHzm-FZQpAxUmQoquzrXOUTKYIezBP8d6Bh2oyz/exec'
+formData = new FormData()
+formData.append('srno', srno1.value);
+formData.append('memb', "deleted")
+fetch(url, {body: formData,method: "post"});
+srno1.value=""
+formData=""
+}
+
+
+</script>
 </body>
 
 </html>
