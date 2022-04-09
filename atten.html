@@ -247,7 +247,7 @@
                 //document.getElementById("membname").disabled=false;
                 document.getElementById('dataform').style.display = "block"
                 document.getElementById('generaldiv').style.display = "none"
-                document.getElementById('date').value = Date()
+                document.getElementById('date').value = new Date().toLocaleTimeString();
                 document.getElementById("membname").focus()
                 document.getElementById("membname").value = "No Name"
                 document.getElementById("entryBy").value = userName;
@@ -270,7 +270,7 @@
                 document.getElementById('mobile').value = member[0].mobile1.toString().substr(0, 8)
                 document.getElementById("srno").disabled = true;
                 document.getElementById("membname").disabled = true;
-                document.getElementById('date').value = Date()
+                document.getElementById('date').value = new Date().toLocaleTimeString();
                 memb.value = "Member"
                 document.getElementById("mobile").focus()
 
@@ -279,7 +279,7 @@
                 document.getElementById('dataform').style.display = "none"
                 duplicatesubmitteddiv.style.display = "block"
                 pAlready.innerHTML = `Data Entered by: ${attenmemb[0].entry}   <br>
-    Entry time ${attenmemb[0].dt.substr(16, 5)}
+    Entry time ${attenmemb[0].dt}
     `
             }
         }
