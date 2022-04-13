@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+td{width:100px; height:100px; border-radius:50px; background:powderblue; color : red; font-size: 90px; text-align:center}
+</style>
+</head>
+<body>
+
+<table align=center>
+<tr><td id='sr' colspan=3 style="font-size: 50px; background:yellow; height:75px; ">SR No
+<tr><td class='nums' >1<td class='nums' >2<td class='nums' >3
+<tr><td class='nums' >4<td class='nums' >5<td class='nums' >6
+<tr><td class='nums' >7<td class='nums' >8<td class='nums' >9
+<tr><td id='back' style="background:red; color:white">&larr;<td class='nums' >0<td id="go" style="color:white; background:green">&rarr;
+
+<script>
+document.getElementById("go").addEventListener("click", goclick);
+document.getElementById("back").addEventListener("click", delchar);
+ns = document.getElementsByClassName("nums")
+for (var i = 0; i < ns.length; i++) {ns[i].addEventListener('click',acz);}   
+function acz(){
+if (sr.innerText === 'SR No' || sr.innerText === 'Non Member'){ 
+sr.innerText =""
+sr.innerText += this.innerText
+}
+else{ sr.innerText += this.innerText}
+}
+function goclick(){
+sr.innerText ="Non Member"
+}
+function delchar(){
+len = sr.innerText.length
+if (len>0){sr.innerText = sr.innerText.substr(0,len-1)}
+}
+</script>
+
+</table>
+</body>
+
+</html>
