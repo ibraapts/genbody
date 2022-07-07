@@ -310,7 +310,7 @@ div{width:360px; margin:0 auto}
                 eab = activeMembers.filter(a => a.area.substr(-3).toUpperCase() === "EAB").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno,mob: a.mobile1 }));
 
                 blank = activeMembers.filter(a => a.area === "BLANK").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno }));
-                allMembNoWise = activeMembers.map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno })).sort(function (a, b) { return a.srno - b.srno })
+                allMembNoWise = activeMembers.map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno, mob: a.mobile1 })).sort(function (a, b) { return a.srno - b.srno })
                 allmemb = activeMembers.map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno,mob: a.mobile1 }));
                 selectedRegion(allmemb,0)
             }
