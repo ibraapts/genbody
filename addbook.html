@@ -1,26 +1,30 @@
 
 
+
 <html>
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IBRA Address Book</title>
+    <title>IBRA</title>
     <script src="index.js" defer></script>
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="powderblue" />
+    <meta name="theme-color" content="#317EFB" />
     <link rel="apple-touch-icon" href="images/ibra512.png">
     <style>
-div{width:360px; margin:0 auto}    
+    
     element.style {
     display: block;
     margin-left: 5px;
     margin-right: 5px;
 }
+a {text-decoration:none}
+
         body {
             background: powderblue;
             font-size: small;
-            margin-left: 0px;
-            margin-right:5px;
+            margin: 0px auto;
+        width:360px;
+        box-sizing: border-box;
         }
 
         .active,
@@ -29,6 +33,10 @@ div{width:360px; margin:0 auto}
             color: white;
         }
 
+#regionTable td:hover {
+            background-color: red;
+            color: white;}
+            
         ul {
             list-style-type: none;
             margin: 0;
@@ -39,6 +47,7 @@ div{width:360px; margin:0 auto}
 
         li {
             float: left;
+            font-size:small; 
         }
 
         .list {
@@ -62,15 +71,16 @@ div{width:360px; margin:0 auto}
         }
 
         #myInput {
-            margin-top: 0px;
-            width: 50%;
-            margin-left: 25%;
+            //margin-top: 0px;
+            width: 300px;;
+            margin-left:30px;
             height: 30px;
             border-radius: 15px;
             background-color: cyan;
             border: 0px;
             outline: 0;
             display: none;
+            
         }
 
         /* The Modal (background) */
@@ -83,9 +93,9 @@ div{width:360px; margin:0 auto}
             /* Sit on top */
             padding-top: 1px;
             /* Location of the box */
-            left: 0;
+            left: inherit;
             top: 0;
-            width: 100%;
+            width: 360px;
             /* Full width */
             height: 100%;
             /* Full height */
@@ -104,7 +114,7 @@ div{width:360px; margin:0 auto}
             padding: 2px;
             padding-bottom: 2px;
             border: 1px solid #888;
-            width: 360px;
+            width: 95%;
             border-radius: 15px;
             margin-top: 53px;
         }
@@ -148,7 +158,7 @@ div{width:360px; margin:0 auto}
             width: 25px;
             height: 25px;
             line-height: 25px;
-            font-size: x-small;
+            font-size: small;
             font-weight: lighter !important;
             color: black !important;
             text-align: center;
@@ -168,7 +178,7 @@ div{width:360px; margin:0 auto}
             width: 25px;
             height: 25px;
             line-height: 25px;
-            font-size: x-small;
+            font-size: small;
             font-weight: lighter !important;
             color: black !important;
             text-align: center;
@@ -256,13 +266,13 @@ div{width:360px; margin:0 auto}
         <span class='smallbadge'>&nbsp;</span> &nbsp;indicates a Family Pensioner<br>
         <span class='smalleabbadge'>&nbsp;</span> &nbsp;indicates an eAB Retiree<br><br>
         Members are requested to verify the correctness of their address and suggest changes if any.<br>
-<button onclick='shregions()'>Show Address Book</button>
+<button onclick='shregions()'>Show Address Book</button>         <button > <a href="https://gvssmark.github.io/ibra/welfare.html" target="_blank">Welfare Schemes</a></button>
         </div>
 
   
   <div id="regions" style="display:none; ">
 
-        <div style="background:powderblue; top:0; ; height:83px; overflow:auto; position:fixed; width: 379px;  ">
+        <div style="background:powderblue; top:0; ; height:83px; overflow:auto; position:fixed; width: 360px;  ">
             <ul>
                 <li onclick="selectedRegion(allmemb,0)" class="list active">All</li>
                 <li onclick="selectedRegion(vsp,1)" class="list">VSP</li>
@@ -281,7 +291,7 @@ div{width:360px; margin:0 auto}
             <input type="text" id='myInput' placeholder="Search here..." onkeyup="fiterName()">
         </div>
 
-        <p id='paraInThisRegion' style="margin-top:85px; margin-left:5px;">
+        <p id='paraInThisRegion' style="margin-top:85px; margin-left:1px; width:360px;">
 </p>
   
         <div id="myModal" class="modal">
@@ -301,17 +311,17 @@ div{width:360px; margin:0 auto}
                     .sort(function (a, b) { return a.name.localeCompare(b.name) });
                 activeMembers.forEach(function (element) { element.IBorEAB = (element.area.substr(-3).toUpperCase() === 'EAB' ? "EAB" : "IB"), element.pentype = (element.fampen.length > 0 ? "fam" : "ser") })
                 familyPensioners = activeMembers.filter(a => a.fampen !== "").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB }));
-                vsp = activeMembers.filter(a => a.area.substr(0, 3) === "VSP").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno, mob: a.mobile1 }));
-                vij = activeMembers.filter(a => a.area.substr(0, 3) === "VIJ").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno, mob: a.mobile1 }));
-                god = activeMembers.filter(a => a.area.substr(0, 3) === "GOD").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno , mob: a.mobile1}));
-                seema = activeMembers.filter(a => a.area.substr(0, 5) === "SEEMA").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno ,mob: a.mobile1 }));
-                hyd = activeMembers.filter(a => a.area.substr(0, 3) === "HYD").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno,mob: a.mobile1 }));
-                oth = activeMembers.filter(a => a.area.substr(0, 3) === "OTH").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno,mob: a.mobile1 }));
-                eab = activeMembers.filter(a => a.area.substr(-3).toUpperCase() === "EAB").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno,mob: a.mobile1 }));
+                vsp = activeMembers.filter(a => a.area.substr(0, 3) === "VSP").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno, mobile: a.mobile1 }));
+                vij = activeMembers.filter(a => a.area.substr(0, 3) === "VIJ").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno, mobile: a.mobile1  }));
+                god = activeMembers.filter(a => a.area.substr(0, 3) === "GOD").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno, mobile: a.mobile1  }));
+                seema = activeMembers.filter(a => a.area.substr(0, 5) === "SEEMA").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno , mobile: a.mobile1 }));
+                hyd = activeMembers.filter(a => a.area.substr(0, 3) === "HYD").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno , mobile: a.mobile1 }));
+                oth = activeMembers.filter(a => a.area.substr(0, 3) === "OTH").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno, mobile: a.mobile1  }));
+                eab = activeMembers.filter(a => a.area.substr(-3).toUpperCase() === "EAB").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno , mobile: a.mobile1 }));
 
-                blank = activeMembers.filter(a => a.area === "BLANK").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno }));
-                allMembNoWise = activeMembers.map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno, mob: a.mobile1 })).sort(function (a, b) { return a.srno - b.srno })
-                allmemb = activeMembers.map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno,mob: a.mobile1 }));
+                blank = activeMembers.filter(a => a.area === "BLANK").map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno, mobile: a.mobile1  }));
+                allMembNoWise = activeMembers.map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno, mobile: a.mobile1  })).sort(function (a, b) { return a.srno - b.srno })
+                allmemb = activeMembers.map(a => ({ id: a.id, name: a.name, fampen: a.fampen, ibeab: a.IBorEAB, srno: a.srno, mobile: a.mobile1  }));
                 selectedRegion(allmemb,0)
             }
             penbrTemp = ""
@@ -334,7 +344,7 @@ function shregions(){
                 regions = ["All Members", "Visakhapatnam Area", "Godavari Area", "Vijayawada Area", "Seema Area", "Hyderabad Area", "Other States", "e Allahabad", "SR No Sorted"]
                 document.getElementById('regionHeading').innerHTML = "Memebers in " + regions[n] + " <span class='badge'>" + array.length + "</span><span class='badge1'>" + famPensionersCount + "</span> <span class='eabbadge'>" + eabcount + "</span>"
                 inThisRegion = "<table id='regionTable'  border=1><tr><td>Name<td>SR No"
-                array.forEach(function (a) { inThisRegion += "<tr onClick='nameclick(this.id)' id=" + a.id + "><td class='" + (a.fampen.length > 0 ? "fam" : "ser") + "'>" + a.name + (a.fampen.length > 0 ? " <span class='smallbadge'> &nbsp;</span> " + a.fampen : " ") + (a.ibeab === 'EAB' ? "<span class='smalleabbadge'>&nbsp;" : "") + "</span > " + a.mob+"<td align=right >" + a.srno + "</td></tr>" })
+                array.forEach(function (a) { inThisRegion += "<tr onClick='nameclick(this.id)' id=" + a.id + "><td class='" + (a.fampen.length > 0 ? "fam" : "ser") + "'>" + a.name + (a.fampen.length > 0 ? " <span class='smallbadge'> &nbsp;</span> " + a.fampen : " ") + (a.ibeab === 'EAB' ? "<span class='smalleabbadge'>&nbsp;" : "") + "</span>" +a.mobile +"<td align=right >" + a.srno + "</td></tr>" })
                 inThisRegion += "</table><br><br><br>"
                 document.getElementById('paraInThisRegion').innerHTML = ""
                 document.getElementById('paraInThisRegion').innerHTML = inThisRegion
@@ -401,14 +411,14 @@ function shregions(){
             function fiterName() {
                 var input, filter, table, tr, td, i, txtValue;
                 input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
+                filter = input.value.toUpperCase().replaceAll(" ","");
                 table = document.getElementById("regionTable");
                 tr = table.getElementsByTagName("tr");
                 for (i = 0; i < tr.length; i++) {
                     td = tr[i].getElementsByTagName("td")[0];
                     if (td) {
                         txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        if (txtValue.toUpperCase().replaceAll(" ","").indexOf(filter) > -1) {
                             tr[i].style.display = "";
                         } else {
                             tr[i].style.display = "none";
